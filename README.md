@@ -8,6 +8,7 @@ Welcome to the React and Node.js Blog Application! This project allows users to 
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+- [Future Scope](#future-scope)
 
 ## Features
 
@@ -52,5 +53,11 @@ Welcome to the React and Node.js Blog Application! This project allows users to 
 3. Add a new blog with a title, content, and image.
 4. View the list of blogs on the homepage.
 5. Delete a blog by clicking on the delete button.
+
+## Future Scope
+1. Add authintication for register and login
+2. Only login user is able to add blog
+3. Auto logout in five minutes
+   
    
 
