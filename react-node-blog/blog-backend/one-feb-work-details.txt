@@ -1,4 +1,0 @@
-Sanitech Blogs
-
-1. Conveted react js code of register, login, addblog, showblog pages to plain html, javascript code.
-2. In frontend add blog large content changed backed datatype of blog content varchar(255) to text.
