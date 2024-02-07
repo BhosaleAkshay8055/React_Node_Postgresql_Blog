@@ -40,7 +40,7 @@ export default function LoginPage({ setToken }) {
                 <input type="password" id="password" name="password" value={password} autoComplete='false' onChange={(e) => setPassword(e.target.value)} placeholder='password' style={{ padding:'10px', marginTop:'5px'}}/><br></br>
                 <button onClick={handleLogin} style={{ padding:'5px', marginTop:'5px'}}>Login</button>
                 <p>Not have an account</p>
-                <Link to='/'>
+                <Link to='/register'>
                     <p>Go to register page</p>
                 </Link>
             </form>
