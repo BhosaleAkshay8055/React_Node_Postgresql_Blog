@@ -39,7 +39,7 @@ Welcome to the React and Node.js Blog Application! This project allows users to 
    
    cd blog-backend
    npm install
-   node serversqlite.js
+   node serverauth.js
    ```
    for run frontend
    ```
