@@ -1,13 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AddBlogss() {
+    const navigate = useNavigate();
     const [blogs, setBlogs] = useState([]);
     const [newBlog, setNewBlog] = useState({ title: '', content: '', image: null });
     const [imagePreview, setImagePreview] = useState(null);
 
     console.log('blogs: ', blogs)
+
+
+    useEffect(() => {
+        // Function to check if the token has expired
+        const checkTokenExpiration = () => {
+            const token = localStorage.getItem('token');
+            const expirationTime = localStorage.getItem('expirationTime');
+            if (!token || !expirationTime || parseInt(expirationTime) < Date.now()) {
+                // If token does not exist or has expired, redirect to login page
+                navigate('/login');
+            }
+        };
+
+        // Run the checkTokenExpiration function initially when the component mounts
+        checkTokenExpiration();
+
+        // Run the checkTokenExpiration function every second to continuously monitor the token expiration
+        const interval = setInterval(checkTokenExpiration, 1000);
+
+        // Cleanup function to clear the interval when the component unmounts
+        return () => clearInterval(interval);
+    }, [navigate]
+    ); // Dependency array including navigate to ensure effect runs when navigate changes
+
 
     const handleInputChange = (e) => {
         const { name, value, files } = e.target;
@@ -27,7 +52,6 @@ function AddBlogss() {
             setNewBlog({ ...newBlog, [name]: value });
         }
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -39,7 +63,8 @@ function AddBlogss() {
 
         try {
             // Send a POST request to create a new blog
-            const response = await axios.post('http://localhost:5000/api/blogsadd', formData);
+            const token = localStorage.getItem('token');
+            const response = await axios.post('http://localhost:5000/api/blogsadd', formData, { headers: { Authorization: token } });
 
             setBlogs([...blogs, response.data]);
             setNewBlog({ title: '', content: '', image: null });
@@ -48,6 +73,10 @@ function AddBlogss() {
             console.error(error);
         }
     };
+
+    // useEffect(() => {
+    //     // Do something with token if needed
+    // }, [token]);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>

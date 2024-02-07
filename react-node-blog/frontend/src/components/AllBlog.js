@@ -3,39 +3,17 @@ import axios from 'axios';
 import { Buffer } from 'buffer';
 import { Link, useNavigate } from 'react-router-dom';
 
-function ShowBlogs() {
+function AllBlogs() {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
-
-  useEffect(() => {
-    // Function to check if the token has expired
-    const checkTokenExpiration = () => {
-      const token = localStorage.getItem('token');
-      const expirationTime = localStorage.getItem('expirationTime');
-      if (!token || !expirationTime || parseInt(expirationTime) < Date.now()) {
-        // If token does not exist or has expired, redirect to login page
-        navigate('/login');
-      }
-    };
-
-    // Run the checkTokenExpiration function initially when the component mounts
-    checkTokenExpiration();
-
-    // Run the checkTokenExpiration function every second to continuously monitor the token expiration
-    const interval = setInterval(checkTokenExpiration, 1000);
-
-    // Cleanup function to clear the interval when the component unmounts
-    return () => clearInterval(interval);
-  }, [navigate]); // Dependency array including navigate to ensure effect runs when navigate changes
-
+  
   useEffect(() => {
     let isMounted = true;
 
     const fetchAndDisplayImages = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/blogs', { headers: { Authorization: token } });
+        const response = await axios.get('http://localhost:5000/api/allblogs');
         const blogsData = response.data;
 
         // Cleanup previous object URLs
@@ -75,17 +53,6 @@ function ShowBlogs() {
     };
   }, []);
 
-  const handleDelete = async (blogId) => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/blogs/${blogId}`, { headers: { Authorization: token } });
-      // Remove the deleted blog from the state
-      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
-    } catch (error) {
-      console.error('Error deleting blog:', error);
-    }
-  };
-
   return (
     <div className="container">
       <h2 className="text-center">All Blogs</h2>
@@ -108,14 +75,6 @@ function ShowBlogs() {
                 </React.Fragment>
               )}
               <p className="w-auto flex-grow-1">{blog.content}</p>
-              {/* Add a delete button */}
-              <button
-                onClick={() => handleDelete(blog.id)}
-                className="btn btn-danger"
-                style={{ fontWeight: 'bold', cursor: 'pointer' }}
-              >
-                Delete
-              </button>
             </div>
           </div>
         ))}
@@ -124,4 +83,4 @@ function ShowBlogs() {
   );
 }
 
-export default ShowBlogs;
+export default AllBlogs;
