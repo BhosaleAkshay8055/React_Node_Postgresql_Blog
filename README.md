@@ -1,6 +1,6 @@
 # React and Node.js Blog Application
 
-Welcome to the React and Node.js Blog Application! This project allows users to register, login, add blogs, and view a list of blogs. The backend is implemented in Node.js with two database options: SQLite3 and PostgreSQL.
+Welcome to the React and Node.js Blog Application! This project allows users to register, log in, add blogs, and view a list of blogs. The backend is implemented in Node.js with two database options: SQLite3 and PostgreSQL.
 
 ## Table of Contents
 
@@ -54,10 +54,11 @@ Welcome to the React and Node.js Blog Application! This project allows users to 
 4. View the list of blogs on the homepage.
 5. Delete a blog by clicking on the delete button.
 
+6. The main part has, added protected route functionality
+   1. In the backend use the serverauth.js file. ( password hash logic, JWT token created, database: SQLite-3)
+   2. Only the login user can add a blog and delete the blog.
+
 ## Future Scope
-1. Add authintication for register and login
-2. Only login user is able to add blog
-3. Auto logout in five minutes
    
    
 
