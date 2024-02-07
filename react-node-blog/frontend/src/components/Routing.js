@@ -14,9 +14,10 @@ export default function Routing() {
         <>
             <Router>
                 <Routes> 
-                    
+
                     {/* Open Routes Start */}
-                    <Route path="/" element={<RegisterPage />} />
+                    <Route path="/" element={<AllBlogs />} />
+                    <Route path="/register" element={<RegisterPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/allblogs" element= { <AllBlogs />} />
                     {/* Open Routes End */}

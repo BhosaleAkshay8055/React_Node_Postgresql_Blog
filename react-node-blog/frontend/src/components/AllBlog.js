@@ -53,9 +53,14 @@ function AllBlogs() {
     };
   }, []);
 
+  const gotoRegisterPage = () => {
+    navigate('/register')
+  }
+
   return (
     <div className="container">
       <h2 className="text-center">All Blogs</h2>
+      <button className="buttonAdminPanel" onClick={ gotoRegisterPage }>Admin Panel</button>
       <div className="row">
         {blogs.map((blog, index) => (
           <div key={index + 1} className="col-lg-4 col-md-6 mb-3 d-flex">

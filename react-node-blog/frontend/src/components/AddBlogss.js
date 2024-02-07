@@ -80,7 +80,7 @@ function AddBlogss() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-            <h1>My Blog</h1>
+            <h1>Add New Blog</h1>
             <form onSubmit={handleSubmit}>
                 <label className='blog-form-feilds'>
                     Title:

@@ -3,3 +3,9 @@
     margin-top: 20px;
     color: #000;
 }
+
+.buttonAdminPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
